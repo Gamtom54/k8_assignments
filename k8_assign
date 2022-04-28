@@ -1,0 +1,25 @@
+Answer 1:
+
+DaemonSet is used to handle the working of nodes and pods and to ensure that every node has a pod.
+ReplicaSet makes it so that the given number of pods always exist even if one is deleted
+
+
+Answer 2:
+
+Update to image of a container get be done via kubectl set image deployment
+eg. kubectl set image deployment kubia nodejs=luksa/kubia:v2
+
+
+Answer 3:
+
+Steps for debugging include checking routes, pods and services.
+First check would be the definition of the replica set yaml file and seeing its data, if it has proper port number and selectors. Then, nodeport yaml would be checked for its ports and that it should match the application port number. Lastly, check the labels of the deoployment to be the same as the nodeport.
+
+
+Answer 4:
+
+After deleting voter pod - no difference, result page still updating. new vote pod was created immediately. container ID is different.
+Same for worker pod. Container restarts here tho as an additive.
+For db pod, results dont get updated. they are captured but not updated in result-app.
+
+To fix, delete the result pod. Then a new copy of the result-app pod will be created and will connect to the db.
